@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const Footer = () => {
     return (
         <div className='bg-linear-to-r from-[#c9f0ff] to-[#c681e770]'>
-            <div className='container mx-auto py-10 md:py-20'>
+            <div className='container mx-auto py-10 md:py-20 px-7 md:px-0'>
                 <div className='flex justify-between items-center'>
                     <img className='w-32' src={logo} alt="" />
                     <Link to="https://github.com/MusratJahan408/ai-model-client" target='_blank'><img className='w-16' src={githubImg} alt="" /></Link>
