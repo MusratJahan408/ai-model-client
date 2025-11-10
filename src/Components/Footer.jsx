@@ -10,7 +10,7 @@ const Footer = () => {
             <div className='container mx-auto py-10 md:py-20'>
                 <div className='flex justify-between items-center'>
                     <img className='w-32' src={logo} alt="" />
-                    <Link target='_blank'><img className='w-16' src={githubImg} alt="" /></Link>
+                    <Link to="https://github.com/MusratJahan408/ai-model-client" target='_blank'><img className='w-16' src={githubImg} alt="" /></Link>
                 </div>
                 <hr className='text-[#54595F] my-5 md:my-10'/>
                 <p className='text-[#54595F] text-bold text-xl text-center'>Copyright ©2025 Gipo. All rights reserved.</p>
