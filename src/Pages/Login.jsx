@@ -1,14 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { use } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../Provider/AuthContext';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+  const {signIn,googleLogin} = use(AuthContext)
+  const navigate = useNavigate()
+
+  const handleLogin =(e)=>{
+          e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email,password)
+    .then(result=>{
+      toast.success("Successfully Login")
+      navigate(`${location.state ? location.state : "/"}`);
+    })
+    .catch(error=>{
+      toast.error('Invalid email or password')
+    })
+  }
+
+const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        // console.log(result.user);
+        toast.success("Successfully Login");
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch((error) => {
+        toast.error(error.code);
+      });
+  };
+
     return (
         <div className='flex flex-col justify-center items-center min-h-screen'>
             <h1 className='text-2xl md:text-5xl font-bold mb-5 md:mb-10'>Login to AI Model Inventory Manager</h1>
             <div className="card  bg-[#c9f0ff] w-full max-w-lg shrink-0 shadow-2xl px-5">
       <div className="card-body">
         
-        <fieldset className="fieldset">
+        <form onSubmit={handleLogin}>
+          <fieldset className="fieldset">
             {/* email  */}
           <label className="label text-xl font-medium">Email</label>
                   <input
@@ -48,6 +81,7 @@ const Login = () => {
 
                   {/* Google */}
                   <button
+                  onClick={handleGoogleLogin}
                     
                     className="btn bg-[#24282c] text-white border-[#e5e5e5]"
                   >
@@ -87,6 +121,7 @@ const Login = () => {
                     </Link>
                   </p>
         </fieldset>
+        </form>
       </div>
     </div>
         </div>
