@@ -30,7 +30,7 @@ const AddModel = () => {
     .then(res=>res.json())
     .then(data=>{
        toast.success("Model added successfully!")
-       navigate("/models")
+       navigate("/all-models")
         console.log(data)
     }).catch(err=>{
         console.log(err)
