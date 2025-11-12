@@ -6,3 +6,7 @@
 *{
      font-family: "Jost", sans-serif;
 }
+
+a.active {
+  @apply border-2 border-[#c681e770] text-[#a415e6d8];
+}

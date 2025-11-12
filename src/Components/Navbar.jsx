@@ -24,7 +24,7 @@ const NavBar = () => {
     setTheme(checked ? "dark" : "light");
   };
   return (
-    <div className="navbar py-0 min-h-0 container mx-auto my-5">
+    <div className="navbar py-0 min-h-0 container mx-auto my-5 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -55,15 +55,16 @@ const NavBar = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to={"/all-models"}>
+                <IoLogoModelS></IoLogoModelS> All Models
+              </NavLink>
+            </li>
+            <li>
               <NavLink to={"/add-model"}>
                 <ImBoxAdd /> Add model
               </NavLink>
             </li>
-            <li>
-              <NavLink to={"/all-models"}>
-                <IoLogoModelS></IoLogoModelS> View Models
-              </NavLink>
-            </li>
+            
           </ul>
         </div>
         <Link to={"/"} className="">
@@ -79,15 +80,16 @@ const NavBar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to={"/all-models"}>
+              <IoLogoModelS /> All Models
+            </NavLink>
+          </li>
+          <li>
             <NavLink to={"/add-model"}>
               <ImBoxAdd /> Add model
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/all-models"}>
-              <IoLogoModelS /> View Models
-            </NavLink>
-          </li>
+          
         </ul>
       </div>
       <div className="navbar-end gap-3">
