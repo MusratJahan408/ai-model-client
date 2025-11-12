@@ -6,6 +6,8 @@ import Register from "../Pages/Register";
 import AddModel from "../Pages/AddModel";
 import ViewModels from "../Pages/ViewModels";
 import PrivateRout from "./PrivateRout";
+import ModelDetails from "../Pages/ModelDetails";
+import EditModel from "../Pages/EditModel";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +34,17 @@ const router = createBrowserRouter([
         path:"/all-models",
         element: <ViewModels></ViewModels>,
         loader:()=>fetch('http://localhost:3000/models')
-      }
+      },
+      {
+        path:"/models-details/:id",
+        element: <PrivateRout><ModelDetails></ModelDetails></PrivateRout>,
+        loader: ({params})=>fetch(`http://localhost:3000/models/${params.id}`)
+      },
+      {
+        path:"/edit-model/:id",
+        element: <PrivateRout><EditModel></EditModel></PrivateRout>,
+        loader: ({params})=>fetch(`http://localhost:3000/models/${params.id}`)
+      },
     ]
   },
 ]);
