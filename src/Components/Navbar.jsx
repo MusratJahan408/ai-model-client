@@ -120,11 +120,11 @@ const NavBar = () => {
               </div>
 
               <li className="mt-3">
-                <Link to={"/my-models"}>Model Purchase</Link>
+                <Link to={"/model-purchase"}>MY Model Purchase</Link>
               </li>
 
               <li>
-                <Link to={"/my-downloads"}>My Models</Link>
+                <Link to={"/my-models"}>My Models</Link>
               </li>
 
               <input

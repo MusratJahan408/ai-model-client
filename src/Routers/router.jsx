@@ -8,6 +8,8 @@ import ViewModels from "../Pages/ViewModels";
 import PrivateRout from "./PrivateRout";
 import ModelDetails from "../Pages/ModelDetails";
 import EditModel from "../Pages/EditModel";
+import MyModels from "../Pages/MyModels";
+import ModelPurchase from "../Pages/ModelPurchase";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,8 @@ const router = createBrowserRouter([
     children:[
       {
         index: true,
-        element:<Home></Home>
+        element:<Home></Home>,
+        loader:()=>fetch('http://localhost:3000/latest-models')
       },
       {
         path:'/login',
@@ -38,7 +41,17 @@ const router = createBrowserRouter([
       {
         path:"/models-details/:id",
         element: <PrivateRout><ModelDetails></ModelDetails></PrivateRout>,
-        loader: ({params})=>fetch(`http://localhost:3000/models/${params.id}`)
+        
+      },
+      {
+        path:"/my-models",
+        element: <PrivateRout><MyModels></MyModels></PrivateRout>,
+        
+      },
+      {
+        path:"/model-purchase",
+        element: <PrivateRout><ModelPurchase></ModelPurchase></PrivateRout>,
+        
       },
       {
         path:"/edit-model/:id",
