@@ -120,7 +120,7 @@ const NavBar = () => {
               </div>
 
               <li className="mt-3">
-                <Link to={"/model-purchase"}>MY Model Purchase</Link>
+                <Link to={"/my-purchase"}>MY Model Purchase</Link>
               </li>
 
               <li>

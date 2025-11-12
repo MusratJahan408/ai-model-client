@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         
       },
       {
-        path:"/model-purchase",
+        path:"/my-purchase",
         element: <PrivateRout><ModelPurchase></ModelPurchase></PrivateRout>,
         
       },
