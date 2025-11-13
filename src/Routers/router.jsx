@@ -10,16 +10,21 @@ import ModelDetails from "../Pages/ModelDetails";
 import EditModel from "../Pages/EditModel";
 import MyModels from "../Pages/MyModels";
 import ModelPurchase from "../Pages/ModelPurchase";
+import LoadingSpinner from "../Components/LoadingSpinner";
+import ErrorPage from "../Pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
+     hydrateFallbackElement:<LoadingSpinner></LoadingSpinner>,
     children:[
       {
         index: true,
         element:<Home></Home>,
-        loader:()=>fetch('http://localhost:3000/latest-models')
+        loader:()=>fetch('http://localhost:3000/latest-models'),
+       
       },
       {
         path:'/login',

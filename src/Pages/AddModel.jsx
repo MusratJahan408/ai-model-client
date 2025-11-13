@@ -76,7 +76,7 @@ const AddModel = () => {
             />
           </div>
 
-          {/* Category Dropdown */}
+          {/* framework Dropdown */}
           <div>
             <label className="label font-medium">Framework</label>
             <select
@@ -88,9 +88,9 @@ const AddModel = () => {
               <option value="" disabled>
                 Select framework
               </option>
-              <option value="Vehicles">TensorFlow</option>
-              <option value="Plants">PyTorch</option>
-              <option value="Foods">Keras</option>
+              <option value="TensorFlow">TensorFlow</option>
+              <option value="PyTorch">PyTorch</option>
+              <option value="Keras">Keras</option>
             </select>
           </div>
 

@@ -24,7 +24,8 @@ const NavBar = () => {
     setTheme(checked ? "dark" : "light");
   };
   return (
-    <div className="navbar py-0 min-h-0 container mx-auto my-5 ">
+    <div className="bg-linear-to-r from-[#c9f0ff] to-[#c681e770] shadow-sm">
+      <div className="navbar min-h-0 container mx-auto py-5 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -153,6 +154,8 @@ const NavBar = () => {
         )}
       </div>
     </div>
+    </div>
+    
   );
 };
 

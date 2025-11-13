@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate } from 'react-router';
 
 const EditModel = () => {
     const data =useLoaderData()
+    console.log(data)
      const navigate = useNavigate()
      const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,6 @@ const EditModel = () => {
       dataset: e.target.dataset.value,
 
     };
-    console.log(formData)
     fetch(`http://localhost:3000/models/${data._id}`,{
         method:"PUT",
         headers:{
@@ -46,7 +46,6 @@ const EditModel = () => {
               type="text"
               name="name"
               defaultValue={data.name}
-              required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter name"
             />
@@ -58,7 +57,6 @@ const EditModel = () => {
               type="text"
               name="useCase"
               defaultValue={data.useCase}
-              required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter UseCase"
             />
@@ -70,27 +68,25 @@ const EditModel = () => {
               type="text"
               name="dataset"
               defaultValue={data.dataset}
-              required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Enter Dataset"
             />
           </div>
 
-          {/* Category Dropdown */}
+          {/* framework Dropdown */}
           <div>
             <label className="label font-medium">Framework</label>
             <select
               name="framework"
               defaultValue={data.framework}
-              required
               className="select w-full rounded-full focus:border-0 focus:outline-gray-200"
             >
               <option value="" disabled>
                 Select framework
               </option>
-              <option value="Vehicles">TensorFlow</option>
-              <option value="Plants">PyTorch</option>
-              <option value="Foods">Keras</option>
+              <option value="TensorFlow">TensorFlow</option>
+              <option value="PyTorch">PyTorch</option>
+              <option value="Keras">Keras</option>
             </select>
           </div>
 
@@ -100,7 +96,6 @@ const EditModel = () => {
             <textarea
               name="description"
               defaultValue={data.description}
-              required
               rows="3"
               className="textarea w-full rounded-2xl focus:border-0 focus:outline-gray-200 h-[250px]"
               placeholder="Enter description"
@@ -114,7 +109,6 @@ const EditModel = () => {
               type="url"
               name="image"
               defaultValue={data.image}
-              required
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="https://example.com/image.jpg"
             />

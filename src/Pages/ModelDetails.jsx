@@ -9,6 +9,7 @@ const ModelDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [model, setModel] = useState({});
+  console.log(model)
   const [loading, setLoading] = useState(true);
   const [refetch,setRefetch] = useState(false)
   const { user } = use(AuthContext);
@@ -78,6 +79,7 @@ const ModelDetails = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${user.accessToken}`,
       },
       body: JSON.stringify(finalModel),
     })

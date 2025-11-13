@@ -1,12 +1,14 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, updateProfileFunc, setUser, googleLogin } =
     use(AuthContext);
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -95,17 +97,20 @@ const Register = () => {
               />
               {/* password  */}
               <div className="relative">
-                <label className="label text-xl font-medium mt-4">
-                  Password
-                </label>
+                <label className="label text-xl font-medium">Password</label>
                 <input
-                  type="password"
+                  type={show ? "text" : "password"}
                   name="password"
                   className="input text-lg w-full"
                   placeholder="Enter your password"
                   required
                 />
-                <p className="absolute top-10 left-72 cursor-pointer"></p>
+                <p
+                  onClick={() => setShow(!show)}
+                  className="absolute top-10 left-96 cursor-pointer"
+                >
+                  {show ? <FaEye /> : <FaEyeSlash />}
+                </p>
               </div>
               <button
                 type="submit"
