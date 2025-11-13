@@ -67,7 +67,7 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             <fieldset className="fieldset">
               {/* name  */}
-              <label className="label text-xl font-medium">Name</label>
+              <label className="label text-xl font-medium dark:text-black">Name</label>
               <input
                 type="Text"
                 name="name"
@@ -76,7 +76,7 @@ const Register = () => {
                 required
               />
               {/* photo url */}
-              <label className="label text-xl font-medium mt-4">
+              <label className="label text-xl font-medium mt-4 dark:text-black">
                 Photo URL
               </label>
               <input
@@ -87,7 +87,7 @@ const Register = () => {
                 required
               />
               {/* email  */}
-              <label className="label text-xl font-medium mt-4">Email</label>
+              <label className="label text-xl font-medium mt-4 dark:text-black">Email</label>
               <input
                 type="email"
                 name="email"
@@ -96,8 +96,8 @@ const Register = () => {
                 required
               />
               {/* password  */}
-              <div className="relative">
-                <label className="label text-xl font-medium">Password</label>
+              <div className="relative mt-4">
+                <label className="label text-xl font-medium dark:text-black">Password</label>
                 <input
                   type={show ? "text" : "password"}
                   name="password"
@@ -121,7 +121,7 @@ const Register = () => {
               {/* Divider */}
               <div className="flex items-center justify-center gap-2 my-2">
                 <div className="h-px w-32 bg-gray-400"></div>
-                <span className="text-sm">or</span>
+                <span className="text-sm dark:text-black">or</span>
                 <div className="h-px w-32 bg-gray-400"></div>
               </div>
 
@@ -159,7 +159,7 @@ const Register = () => {
                 </svg>
                 Login with Google
               </button>
-              <p className="font-bold text-sm text-center mt-4">
+              <p className="font-bold text-sm text-center mt-4 dark:text-black">
                 Already Have An Account ?
                 <Link to="/login" className="text-[#c681e770]">
                   Login

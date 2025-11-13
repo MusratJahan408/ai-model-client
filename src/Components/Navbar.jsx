@@ -133,12 +133,12 @@ const NavBar = () => {
                 />
 
                 <li>
-                  <button
+                  <Link to={"/"}
                     onClick={logOut}
                     className="btn btn-xs text-left bg-[#24282c] text-white"
                   >
                     <IoLogOut /> Logout
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </div>

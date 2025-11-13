@@ -47,7 +47,7 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             <fieldset className="fieldset">
               {/* email  */}
-              <label className="label text-xl font-medium">Email</label>
+              <label className="label text-xl font-medium dark:text-black">Email</label>
               <input
                 type="email"
                 name="email"
@@ -56,7 +56,7 @@ const Login = () => {
               />
               {/* password  */}
               <div className="relative">
-                <label className="label text-xl font-medium">Password</label>
+                <label className="label text-xl font-medium dark:text-black">Password</label>
                 <input
                   type={show ? "text" : "password"}
                   name="password"
@@ -72,7 +72,7 @@ const Login = () => {
                 </p>
               </div>
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a className="link link-hover dark:text-black">Forgot password?</a>
               </div>
               <button className="btn bg-[#24282c] text-white mt-4 w-full">
                 Login
@@ -80,7 +80,7 @@ const Login = () => {
               {/* Divider */}
               <div className="flex items-center justify-center gap-2 my-2">
                 <div className="h-px w-32 bg-gray-400"></div>
-                <span className="text-sm">or</span>
+                <span className="text-sm dark:text-black">or</span>
                 <div className="h-px w-32 bg-gray-400"></div>
               </div>
 
@@ -118,7 +118,7 @@ const Login = () => {
                 </svg>
                 Login with Google
               </button>
-              <p className="font-semibold text-sm text-center my-4">
+              <p className="font-semibold text-sm text-center my-4 dark:text-black">
                 Dont’t Have An Account ?
                 <Link to="/register" className="text-[#c681e770]">
                   Register
