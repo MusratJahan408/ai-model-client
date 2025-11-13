@@ -9,7 +9,6 @@ const ModelDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [model, setModel] = useState({});
-  console.log(model)
   const [loading, setLoading] = useState(true);
   const [refetch,setRefetch] = useState(false)
   const { user } = use(AuthContext);
@@ -18,13 +17,17 @@ const ModelDetails = () => {
     fetch(`http://localhost:3000/models/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
+        "Content-Type":"application/json"
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setModel(data);
         setLoading(false);
-      });
+      }).catch(err=>{
+        console.log(err)
+        setLoading(false);
+      })
   }, [user, id,refetch]);
 
   const handleDelete = () => {
@@ -65,6 +68,7 @@ const ModelDetails = () => {
   const handlePurchase = () => {
     const finalModel = {
       name: model.name,
+      modelId :model._id,
       useCase: model.useCase,
       createdBy: model.createdBy,
       purchased: model.purchased,
@@ -85,7 +89,6 @@ const ModelDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success("Successfully purchase");
         setRefetch(!refetch)
       })

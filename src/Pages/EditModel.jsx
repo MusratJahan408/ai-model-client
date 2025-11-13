@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLoaderData, useNavigate } from 'react-router';
+import LoadingSpinner from '../Components/LoadingSpinner';
 
 const EditModel = () => {
     const data =useLoaderData()
-    console.log(data)
+    const [loading, setLoading] = useState(false)
      const navigate = useNavigate()
      const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true)
     const formData = {
       name: e.target.name.value,
       useCase: e.target.useCase.value,
@@ -32,8 +34,14 @@ const EditModel = () => {
     }).catch(err=>{
         console.log(err)
         toast.error("Failed to add model.");
-    })
+    }).finally(() => {
+      setLoading(false);
+    });
   };
+
+  if(loading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
     return (
         <div className="card border my-10 md:my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">

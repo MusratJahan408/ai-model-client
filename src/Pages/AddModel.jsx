@@ -1,13 +1,16 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../Provider/AuthContext";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const AddModel = () => {
     const {user} =use(AuthContext)
+    const [loading,setLoading] = useState(false)
     const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true)
     const formData = {
       name: e.target.name.value,
       useCase: e.target.useCase.value,
@@ -35,8 +38,14 @@ const AddModel = () => {
     }).catch(err=>{
         console.log(err)
         toast.error("Failed to add model.");
-    })
+    }).finally(() => {
+      setLoading(false);
+    });
   };
+
+  if(loading){
+    return <LoadingSpinner></LoadingSpinner>
+  }
   return (
     <div className="card border my-10 md:my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
