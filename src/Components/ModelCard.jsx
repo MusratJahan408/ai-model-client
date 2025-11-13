@@ -7,9 +7,7 @@ const ModelCard = ({model}) => {
       <img src={model.image} alt="" className="w-full h-48 p-5 mx-auto" />
 
       <div className="p-5 pb-7">
-        <h3 className="text-xl font-semibold mb-2">{model.name}</h3>
-        <h3 className=" font-semibold mb-3 text-gray-500">{model.createdBy}</h3>
-
+        <h3 className="text-xl dark:text-black font-semibold mb-2">{model.name}</h3>
         <div className="flex items-center justify-between mb-4">
           <p className="text-sm font-semibold px-2 border rounded-full border-[#10b5f7] opacity-90 text-[#10b5f7]">{model.useCase}</p>
           <p className="text-sm font-semibold px-2 border rounded-full border-yellow-500 opacity-90 text-yellow-500">{model.dataset}</p>

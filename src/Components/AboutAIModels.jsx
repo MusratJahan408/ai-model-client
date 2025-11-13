@@ -11,12 +11,12 @@ const AboutAIModels = () => {
       <div className="flex flex-col md:flex-row gap-10 items-center">
         {/* Left Text */}
         <div className="md:w-1/2 space-y-4 ml-3 md:ml-0">
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p className="text-gray-700 text-lg leading-relaxed dark:text-white">
             AI models are computer programs trained to perform specific tasks by
             learning patterns from data. They are a cornerstone of modern
             machine learning and artificial intelligence.
           </p>
-          <p className="text-gray-700 text-lg leading-relaxed">
+          <p className="text-gray-700 text-lg leading-relaxed dark:text-white">
             Neural networks, a type of AI model, mimic the human brain's
             structure to process complex information. These models are widely
             used for tasks like natural language processing, image recognition,

@@ -23,7 +23,7 @@ const HeroSection = () => {
                     <div className='w-full md:h-[800px] flex flex-col md:flex-row justify-between items-center gap-10 md:gap-5'>
                        <div className='flex-1'>
                          <h1 className='text-2xl text-[#54595F] md:text-6xl mt-2 md:mt-7 mb-5 md:mb-10 font-bold'>AI powered learning experiences</h1>
-                         <p className='text-xl'>Gipo uses AI to provide personalized learning experiences for students.</p>
+                         <p className='text-xl dark:text-black'>Gipo uses AI to provide personalized learning experiences for students.</p>
                        </div>
                       <div className='flex-1'>
                         <img className='w-full h-full rounded-2xl' src={img1} alt="" />

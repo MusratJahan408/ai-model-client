@@ -7,7 +7,7 @@ const PurchaseCard = ({model}) => {
       <img src={model.image} alt="" className="w-full h-48 p-5 mx-auto" />
 
       <div className="p-5 pb-7">
-        <h3 className="text-xl font-semibold mb-2">{model.name}</h3>
+        <h3 className="text-xl font-semibold dark:text-black mb-2">{model.name}</h3>
         <h3 className=" font-semibold mb-3 text-gray-500">{model.createdBy}</h3>
 
         <div className="flex items-center justify-between mb-4">
