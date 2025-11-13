@@ -1,6 +1,6 @@
 **Project Name:** AI Models
 
-**Live Site:** [https://ai-models.netlify.app](https://ai-models.netlify.app)
+**Live Site:** [https://gipo-ai-model.web.app]
 
 ---
 
