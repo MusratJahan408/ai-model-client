@@ -23,7 +23,8 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("ai-model-server-nu.vercel.app/latest-models"),
+        loader: () =>
+          fetch("https://ai-model-server-nu.vercel.app/latest-models"),
       },
       {
         path: "/login",
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/all-models",
         element: <ViewModels></ViewModels>,
-        loader: () => fetch("ai-model-server-nu.vercel.app/models"),
+        loader: () => fetch("https://ai-model-server-nu.vercel.app/models"),
       },
       {
         path: "/models-details/:id",
@@ -78,7 +79,7 @@ const router = createBrowserRouter([
           </PrivateRout>
         ),
         loader: ({ params }) =>
-          fetch(`ai-model-server-nu.vercel.app/models/${params.id}`),
+          fetch(`https://ai-model-server-nu.vercel.app/models/${params.id}`),
       },
     ],
   },

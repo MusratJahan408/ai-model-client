@@ -14,7 +14,7 @@ const ModelDetails = () => {
   const { user } = use(AuthContext);
 
   useEffect(() => {
-    fetch(`ai-model-server-nu.vercel.app/models/${id}`, {
+    fetch(`https://ai-model-server-nu.vercel.app/models/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ const ModelDetails = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        
         setLoading(false);
       });
   }, [user, id, refetch]);
@@ -42,7 +42,7 @@ const ModelDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`ai-model-server-nu.vercel.app/models/${model._id}`, {
+        fetch(`https://ai-model-server-nu.vercel.app/models/${model._id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
@@ -56,10 +56,10 @@ const ModelDetails = () => {
               icon: "success",
             });
             navigate("/all-models");
-            console.log(data);
+            
           })
           .catch((err) => {
-            console.log(err);
+           
             toast.error("Failed to delete.");
           });
       }
@@ -80,7 +80,7 @@ const ModelDetails = () => {
       createdAt: new Date(),
       purchased_by: user.email,
     };
-    fetch(`ai-model-server-nu.vercel.app/purchase/${model._id}`, {
+    fetch(`https://ai-model-server-nu.vercel.app/purchase/${model._id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -94,7 +94,7 @@ const ModelDetails = () => {
         setRefetch(!refetch);
       })
       .catch((err) => {
-        console.log(err);
+        
         toast.error("Failed to delete.");
       });
   };

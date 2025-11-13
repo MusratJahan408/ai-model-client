@@ -49,7 +49,7 @@ const Register = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
-        // console.log(result.user);
+        
         toast.success("Successfully Login");
         navigate("/");
       })

@@ -18,7 +18,7 @@ const EditModel = () => {
       image: e.target.image.value,
       dataset: e.target.dataset.value,
     };
-    fetch(`ai-model-server-nu.vercel.app/models/${data._id}`, {
+    fetch(`https://ai-model-server-nu.vercel.app/models/${data._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -29,10 +29,10 @@ const EditModel = () => {
       .then((data) => {
         toast.success("Model edited successfully!");
         navigate("/all-models");
-        console.log(data);
+        
       })
       .catch((err) => {
-        console.log(err);
+        
         toast.error("Failed to add model.");
       })
       .finally(() => {

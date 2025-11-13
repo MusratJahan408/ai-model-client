@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAA2_fL7YDhDQH9wM-xrDOwlwDiCeuWpcQ",
-  authDomain: "gipo-ai-model.firebaseapp.com",
-  projectId: "gipo-ai-model",
-  storageBucket: "gipo-ai-model.firebasestorage.app",
-  messagingSenderId: "936315373519",
-  appId: "1:936315373519:web:2c21786af21b573cfe74ba"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

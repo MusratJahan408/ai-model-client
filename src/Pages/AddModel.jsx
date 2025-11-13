@@ -22,7 +22,7 @@ const AddModel = () => {
       createdBy: user.email,
       purchased: 0,
     };
-    fetch("ai-model-server-nu.vercel.app/models", {
+    fetch("https://ai-model-server-nu.vercel.app/models", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,10 +33,10 @@ const AddModel = () => {
       .then((data) => {
         toast.success("Model added successfully!");
         navigate("/all-models");
-        console.log(data);
+        
       })
       .catch((err) => {
-        console.log(err);
+        
         toast.error("Failed to add model.");
       })
       .finally(() => {

@@ -13,7 +13,7 @@ const ViewModels = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setLoading(true);
-    fetch(`ai-model-server-nu.vercel.app/search?search=${searchText}`)
+    fetch(`https://ai-model-server-nu.vercel.app/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setModels(data);
@@ -25,7 +25,7 @@ const ViewModels = () => {
     const framework = e.target.value;
     setSelectedFramework(framework);
     setLoading(true);
-    fetch(`ai-model-server-nu.vercel.app/filter?framework=${framework}`)
+    fetch(`https://ai-model-server-nu.vercel.app/filter?framework=${framework}`)
       .then((res) => res.json())
       .then((data) => {
         setModels(data);
