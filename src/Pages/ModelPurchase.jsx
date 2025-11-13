@@ -8,9 +8,8 @@ const ModelPurchase = () => {
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
-    fetch(`http://localhost:3000/my-purchase?email=${user.email}`, {
+    fetch(`ai-model-server-nu.vercel.app/my-purchase?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },

@@ -10,25 +10,26 @@ const ModelDetails = () => {
   const { id } = useParams();
   const [model, setModel] = useState({});
   const [loading, setLoading] = useState(true);
-  const [refetch,setRefetch] = useState(false)
+  const [refetch, setRefetch] = useState(false);
   const { user } = use(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/models/${id}`, {
+    fetch(`ai-model-server-nu.vercel.app/models/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
-        "Content-Type":"application/json"
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setModel(data);
         setLoading(false);
-      }).catch(err=>{
-        console.log(err)
-        setLoading(false);
       })
-  }, [user, id,refetch]);
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, [user, id, refetch]);
 
   const handleDelete = () => {
     Swal.fire({
@@ -41,7 +42,7 @@ const ModelDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/models/${model._id}`, {
+        fetch(`ai-model-server-nu.vercel.app/models/${model._id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
@@ -68,7 +69,7 @@ const ModelDetails = () => {
   const handlePurchase = () => {
     const finalModel = {
       name: model.name,
-      modelId :model._id,
+      modelId: model._id,
       useCase: model.useCase,
       createdBy: model.createdBy,
       purchased: model.purchased,
@@ -79,7 +80,7 @@ const ModelDetails = () => {
       createdAt: new Date(),
       purchased_by: user.email,
     };
-    fetch(`http://localhost:3000/purchase/${model._id}`, {
+    fetch(`ai-model-server-nu.vercel.app/purchase/${model._id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -90,7 +91,7 @@ const ModelDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Successfully purchase");
-        setRefetch(!refetch)
+        setRefetch(!refetch);
       })
       .catch((err) => {
         console.log(err);

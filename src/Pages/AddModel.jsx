@@ -5,12 +5,12 @@ import toast from "react-hot-toast";
 import LoadingSpinner from "../Components/LoadingSpinner";
 
 const AddModel = () => {
-    const {user} =use(AuthContext)
-    const [loading,setLoading] = useState(false)
-    const navigate = useNavigate()
+  const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const formData = {
       name: e.target.name.value,
       useCase: e.target.useCase.value,
@@ -19,32 +19,33 @@ const AddModel = () => {
       image: e.target.image.value,
       dataset: e.target.dataset.value,
       createdAt: new Date(),
-      createdBy : user.email,
-      purchased:0
-
+      createdBy: user.email,
+      purchased: 0,
     };
-    fetch('http://localhost:3000/models',{
-        method:"POST",
-        headers:{
-            "content-type" : "application/json"
-        },
-        body:JSON.stringify(formData)
+    fetch("ai-model-server-nu.vercel.app/models", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .then(res=>res.json())
-    .then(data=>{
-       toast.success("Model added successfully!")
-       navigate("/all-models")
-        console.log(data)
-    }).catch(err=>{
-        console.log(err)
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Model added successfully!");
+        navigate("/all-models");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
         toast.error("Failed to add model.");
-    }).finally(() => {
-      setLoading(false);
-    });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  if(loading){
-    return <LoadingSpinner></LoadingSpinner>
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
   }
   return (
     <div className="card border my-10 md:my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">

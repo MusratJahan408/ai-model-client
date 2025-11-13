@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import toast from 'react-hot-toast';
-import { useLoaderData, useNavigate } from 'react-router';
-import LoadingSpinner from '../Components/LoadingSpinner';
+import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useLoaderData, useNavigate } from "react-router";
+import LoadingSpinner from "../Components/LoadingSpinner";
 
 const EditModel = () => {
-    const data =useLoaderData()
-    const [loading, setLoading] = useState(false)
-     const navigate = useNavigate()
-     const handleSubmit = (e) => {
+  const data = useLoaderData();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const formData = {
       name: e.target.name.value,
       useCase: e.target.useCase.value,
@@ -17,33 +17,34 @@ const EditModel = () => {
       description: e.target.description.value,
       image: e.target.image.value,
       dataset: e.target.dataset.value,
-
     };
-    fetch(`http://localhost:3000/models/${data._id}`,{
-        method:"PUT",
-        headers:{
-            "content-type" : "application/json"
-        },
-        body:JSON.stringify(formData)
+    fetch(`ai-model-server-nu.vercel.app/models/${data._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
     })
-    .then(res=>res.json())
-    .then(data=>{
-       toast.success("Model edited successfully!")
-       navigate("/all-models")
-        console.log(data)
-    }).catch(err=>{
-        console.log(err)
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Model edited successfully!");
+        navigate("/all-models");
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
         toast.error("Failed to add model.");
-    }).finally(() => {
-      setLoading(false);
-    });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  if(loading){
-    return <LoadingSpinner></LoadingSpinner>
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
   }
-    return (
-        <div className="card border my-10 md:my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+  return (
+    <div className="card border my-10 md:my-20 border-gray-200 bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">Edit Model</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -127,12 +128,12 @@ const EditModel = () => {
             type="submit"
             className="btn w-full text-white mt-6 rounded-full bg-[#24282c]"
           >
-           Edit Model
+            Edit Model
           </button>
         </form>
       </div>
     </div>
-    );
+  );
 };
 
 export default EditModel;

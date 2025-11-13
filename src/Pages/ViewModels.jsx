@@ -5,27 +5,15 @@ import LoadingSpinner from "../Components/LoadingSpinner";
 
 const ViewModels = () => {
   const data = useLoaderData();
-  const [models, setModels] = useState(data)
-  const [loading, setLoading] = useState(false)
-   const [selectedFramework, setSelectedFramework] = useState("");
+  const [models, setModels] = useState(data);
+  const [loading, setLoading] = useState(false);
+  const [selectedFramework, setSelectedFramework] = useState("");
 
-  const handleSearch =(e)=>{
-    e.preventDefault()
-    const searchText = e.target.search.value 
-   setLoading(true)
-    fetch(`http://localhost:3000/search?search=${searchText}`)
-    .then(res=>res.json())
-    .then(data=>{
-      setModels(data)
-      setLoading(false)
-    })
-  }
-
-  const handleFrameworkChange = (e) => {
-    const framework = e.target.value;
-    setSelectedFramework(framework);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
     setLoading(true);
-    fetch(`http://localhost:3000/filter?framework=${framework}`)
+    fetch(`ai-model-server-nu.vercel.app/search?search=${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setModels(data);
@@ -33,17 +21,29 @@ const ViewModels = () => {
       });
   };
 
-  if(loading){
-    return <LoadingSpinner></LoadingSpinner>
+  const handleFrameworkChange = (e) => {
+    const framework = e.target.value;
+    setSelectedFramework(framework);
+    setLoading(true);
+    fetch(`ai-model-server-nu.vercel.app/filter?framework=${framework}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setModels(data);
+        setLoading(false);
+      });
+  };
+
+  if (loading) {
+    return <LoadingSpinner></LoadingSpinner>;
   }
   return (
     <div className="container mx-auto mb-10 md:mb-20">
       <h1 className="text-2xl md:text-5xl font-semibold text-center my-10 md:my-20">
         All Models
       </h1>
-      
+
       {/* framework filter  */}
-       <div className="text-end mb-10 px-5">
+      <div className="text-end mb-10 px-5">
         <label className="label font-medium mr-2"></label>
         <select
           value={selectedFramework}
@@ -80,11 +80,9 @@ const ViewModels = () => {
       </form>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-3 md:px-0">
-        {
-        models.map((model) => (
+        {models.map((model) => (
           <ModelCard key={model._id} model={model}></ModelCard>
-        ))
-        }
+        ))}
       </div>
     </div>
   );

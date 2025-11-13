@@ -17,53 +17,70 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
-     hydrateFallbackElement:<LoadingSpinner></LoadingSpinner>,
-    children:[
+    errorElement: <ErrorPage></ErrorPage>,
+    hydrateFallbackElement: <LoadingSpinner></LoadingSpinner>,
+    children: [
       {
         index: true,
-        element:<Home></Home>,
-        loader:()=>fetch('http://localhost:3000/latest-models'),
-       
+        element: <Home></Home>,
+        loader: () => fetch("ai-model-server-nu.vercel.app/latest-models"),
       },
       {
-        path:'/login',
-        element: <Login></Login>
+        path: "/login",
+        element: <Login></Login>,
       },
       {
-        path:'/register',
-        element: <Register></Register>
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path:"/add-model",
-        element: <PrivateRout><AddModel></AddModel></PrivateRout>
+        path: "/add-model",
+        element: (
+          <PrivateRout>
+            <AddModel></AddModel>
+          </PrivateRout>
+        ),
       },
       {
-        path:"/all-models",
+        path: "/all-models",
         element: <ViewModels></ViewModels>,
-        loader:()=>fetch('http://localhost:3000/models')
+        loader: () => fetch("ai-model-server-nu.vercel.app/models"),
       },
       {
-        path:"/models-details/:id",
-        element: <PrivateRout><ModelDetails></ModelDetails></PrivateRout>,
-        
+        path: "/models-details/:id",
+        element: (
+          <PrivateRout>
+            <ModelDetails></ModelDetails>
+          </PrivateRout>
+        ),
       },
       {
-        path:"/my-models",
-        element: <PrivateRout><MyModels></MyModels></PrivateRout>,
-        
+        path: "/my-models",
+        element: (
+          <PrivateRout>
+            <MyModels></MyModels>
+          </PrivateRout>
+        ),
       },
       {
-        path:"/my-purchase",
-        element: <PrivateRout><ModelPurchase></ModelPurchase></PrivateRout>,
-        
+        path: "/my-purchase",
+        element: (
+          <PrivateRout>
+            <ModelPurchase></ModelPurchase>
+          </PrivateRout>
+        ),
       },
       {
-        path:"/edit-model/:id",
-        element: <PrivateRout><EditModel></EditModel></PrivateRout>,
-        loader: ({params})=>fetch(`http://localhost:3000/models/${params.id}`)
+        path: "/edit-model/:id",
+        element: (
+          <PrivateRout>
+            <EditModel></EditModel>
+          </PrivateRout>
+        ),
+        loader: ({ params }) =>
+          fetch(`ai-model-server-nu.vercel.app/models/${params.id}`),
       },
-    ]
+    ],
   },
 ]);
 
