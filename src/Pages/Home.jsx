@@ -2,6 +2,7 @@ import React from "react";
 import HeroSection from "../Components/HeroSection";
 import { useLoaderData } from "react-router";
 import LatestCard from "../Components/LatestCard";
+import AboutAIModels from "../Components/AboutAIModels";
 
 const Home = () => {
   const data = useLoaderData();
@@ -16,6 +17,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <AboutAIModels></AboutAIModels>
     </div>
   );
 };
