@@ -1,131 +1,111 @@
 import React, { use, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { AuthContext } from "../Provider/AuthContext";
 import toast from "react-hot-toast";
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const { signIn, googleLogin } = use(AuthContext);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
     signIn(email, password)
-      .then((result) => {
-        toast.success("Successfully Login");
-        navigate(`${location.state ? location.state : "/"}`);
+      .then(() => {
+        toast.success("Welcome back! Login successful.");
+        navigate(location.state ? location.state : "/");
       })
-      .catch((error) => {
-        toast.error("Invalid email or password");
-      });
+      .catch(() => {
+        toast.error("Invalid credentials. Please try again.");
+      })
+      .finally(() => setLoading(false));
   };
 
-  const handleGoogleLogin = () => {
-    googleLogin()
-      .then((result) => {
-        
-        toast.success("Successfully Login");
-        navigate(`${location.state ? location.state : "/"}`);
-      })
-      .catch((error) => {
-        toast.error(error.code);
-      });
+  // Requirement: Demo User/Admin Credentials Button
+  const fillDemo = (role) => {
+    const emailField = document.querySelector('input[name="email"]');
+    const passField = document.querySelector('input[name="password"]');
+    if (role === 'admin') {
+      emailField.value = "admin@ai-manager.com";
+      passField.value = "Admin@123";
+    } else {
+      emailField.value = "user@ai-demo.com";
+      passField.value = "User@123";
+    }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-2xl md:text-5xl font-bold mb-5 md:mb-10">
-        Login to AI Model Inventory Manager
-      </h1>
-      <div className="card  bg-[#c9f0ff] w-full max-w-lg shrink-0 shadow-2xl px-5">
-        <div className="card-body">
-          <form onSubmit={handleLogin}>
-            <fieldset className="fieldset">
-              {/* email  */}
-              <label className="label text-xl font-medium dark:text-black">Email</label>
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50 dark:bg-slate-900 px-4">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl md:text-5xl font-bold text-[#24282c] dark:text-white">
+          Access AI Hub
+        </h1>
+        <p className="text-gray-500 mt-2">Manage your AI inventory with ease</p>
+      </div>
+
+      <div className="card bg-[#c9f0ff] dark:bg-slate-800 w-full max-w-lg shadow-2xl rounded-3xl">
+        <div className="card-body p-8">
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="form-control">
+              <label className="label font-semibold dark:text-white">Email</label>
               <input
                 type="email"
                 name="email"
-                className="input text-xl w-full"
-                placeholder="Enter your email address"
+                className="input input-bordered rounded-xl bg-white"
+                placeholder="email@example.com"
+                required
               />
-              {/* password  */}
-              <div className="relative">
-                <label className="label text-xl font-medium dark:text-black">Password</label>
-                <input
-                  type={show ? "text" : "password"}
-                  name="password"
-                  className="input text-lg w-full"
-                  placeholder="Enter your password"
-                  required
-                />
-                <p
-                  onClick={() => setShow(!show)}
-                  className="absolute top-10 left-96 cursor-pointer"
-                >
-                  {show ? <FaEye /> : <FaEyeSlash />}
-                </p>
-              </div>
-              <div>
-                <a className="link link-hover dark:text-black">Forgot password?</a>
-              </div>
-              <button className="btn bg-[#24282c] text-white mt-4 w-full">
-                Login
-              </button>
-              {/* Divider */}
-              <div className="flex items-center justify-center gap-2 my-2">
-                <div className="h-px w-32 bg-gray-400"></div>
-                <span className="text-sm dark:text-black">or</span>
-                <div className="h-px w-32 bg-gray-400"></div>
-              </div>
+            </div>
 
-              {/* Google */}
+            <div className="form-control relative">
+              <label className="label font-semibold dark:text-white">Password</label>
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                className="input input-bordered rounded-xl bg-white"
+                placeholder="••••••••"
+                required
+              />
               <button
-                onClick={handleGoogleLogin}
-                className="btn bg-[#24282c] text-white border-[#e5e5e5]"
+                type="button"
+                onClick={() => setShow(!show)}
+                className="absolute left-[350px] top-3 text-gray-500"
               >
-                <svg
-                  aria-label="Google logo"
-                  width="16"
-                  height="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 512 512"
-                >
-                  <g>
-                    <path d="m0 0H512V512H0" fill="#fff"></path>
-                    <path
-                      fill="#34a853"
-                      d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                    ></path>
-                    <path
-                      fill="#4285f4"
-                      d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                    ></path>
-                    <path
-                      fill="#fbbc02"
-                      d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                    ></path>
-                    <path
-                      fill="#ea4335"
-                      d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                    ></path>
-                  </g>
-                </svg>
-                Login with Google
+                {show ? <FaEyeSlash /> : <FaEye />}
               </button>
-              <p className="font-semibold text-sm text-center my-4 dark:text-black">
-                Dont’t Have An Account ?
-                <Link to="/register" className="text-[#c681e770]">
-                  Register
-                </Link>
-              </p>
-            </fieldset>
+            </div>
+
+            <button disabled={loading} className="btn bg-[#24282c] text-white w-full rounded-xl hover:bg-black transition-all">
+              {loading ? <span className="loading loading-spinner"></span> : "Sign In"}
+            </button>
           </form>
+
+          <div className="divider dark:text-gray-400 text-xs">OR CONTINUE WITH</div>
+
+          <button onClick={() => googleLogin().then(() => navigate("/"))} className="btn btn-outline border-gray-300 bg-white w-full rounded-xl flex items-center gap-2">
+            <FaGoogle className="text-red-500" /> Google
+          </button>
+
+          {/* Demo Credentials Section */}
+          <div className="mt-6 p-4 bg-white/50 dark:bg-slate-700 rounded-2xl border border-dashed border-gray-400">
+            <p className="text-xs font-bold mb-2 text-center">DEMO ACCESS (One-click fill)</p>
+            <div className="flex gap-2">
+              <button onClick={() => fillDemo('admin')} className="btn btn-xs flex-1 bg-primary text-white border-none">Admin</button>
+              <button onClick={() => fillDemo('user')} className="btn btn-xs flex-1 bg-secondary text-white border-none">User</button>
+            </div>
+          </div>
+
+          <p className="text-center mt-6 dark:text-white text-sm">
+            New here? <Link to="/register" className="text-blue-600 font-bold hover:underline">Create Account</Link>
+          </p>
         </div>
       </div>
     </div>
