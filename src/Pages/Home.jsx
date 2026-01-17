@@ -4,6 +4,13 @@ import { useLoaderData } from "react-router";
 import LatestCard from "../Components/LatestCard";
 import AboutAIModels from "../Components/AboutAIModels";
 import GetStarted from "../Components/GetStarted";
+import StatsSection from "../Components/StatsSection";
+import Categories from "../Components/Categories";
+import Testimonials from "../Components/Testimonials";
+import AI_FAQ from "../Components/AI_FAQ";
+import AI_News from "../Components/AI_News";
+import Newsletter from "../Components/Newsletter";
+import FinalCTA from "../Components/FinalCTA";
 
 const Home = () => {
   const data = useLoaderData();
@@ -19,7 +26,14 @@ const Home = () => {
         </div>
       </div>
       <AboutAIModels></AboutAIModels>
+      <StatsSection></StatsSection>
+      <Categories></Categories>
       <GetStarted></GetStarted>
+      <Testimonials></Testimonials>
+      <AI_FAQ></AI_FAQ>
+      <AI_News></AI_News>
+      <Newsletter></Newsletter>
+      <FinalCTA></FinalCTA>
     </div>
   );
 };
